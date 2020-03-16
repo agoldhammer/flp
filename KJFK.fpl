@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<flight-plan xmlns="http://www8.garmin.com/xmlschemas/FlightPlan/v1">
+  <created>2020-03-16T15:48:19Z</created>
+  <waypoint-table>
+    <waypoint>
+      <identifier>KBOS</identifier>
+      <type>AIRPORT</type>
+      <country-code>K6</country-code>
+      <lat>42.362944</lat>
+      <lon>-71.006389</lon>
+      <comment />
+    </waypoint>
+    <waypoint>
+      <identifier>BURDY</identifier>
+      <type>INT</type>
+      <country-code>K6</country-code>
+      <lat>41.955317</lat>
+      <lon>-70.952069</lon>
+      <comment />
+    </waypoint>
+    <waypoint>
+      <identifier>INNDY</identifier>
+      <type>INT</type>
+      <country-code>K6</country-code>
+      <lat>41.771997</lat>
+      <lon>-71.098869</lon>
+      <comment />
+    </waypoint>
+    <waypoint>
+      <identifier>AVONN</identifier>
+      <type>INT</type>
+      <country-code>K6</country-code>
+      <lat>41.635917</lat>
+      <lon>-71.207264</lon>
+      <comment />
+    </waypoint>
+    <waypoint>
+      <identifier>MINNK</identifier>
+      <type>INT</type>
+      <country-code>K6</country-code>
+      <lat>41.361297</lat>
+      <lon>-71.424222</lon>
+      <comment />
+    </waypoint>
+    <waypoint>
+      <identifier>SEY</identifier>
+      <type>VOR</type>
+      <country-code>K6</country-code>
+      <lat>41.167436</lat>
+      <lon>-71.576086</lon>
+      <comment />
+    </waypoint>
+    <waypoint>
+      <identifier>ARCAV</identifier>
+      <type>INT</type>
+      <country-code>K6</country-code>
+      <lat>40.966050</lat>
+      <lon>-71.798783</lon>
+      <comment />
+    </waypoint>
+    <waypoint>
+      <identifier>HTO</identifier>
+      <type>VOR</type>
+      <country-code>K6</country-code>
+      <lat>40.918997</lat>
+      <lon>-72.316706</lon>
+      <comment />
+    </waypoint>
+    <waypoint>
+      <identifier>CCC</identifier>
+      <type>VOR</type>
+      <country-code>K6</country-code>
+      <lat>40.929625</lat>
+      <lon>-72.798861</lon>
+      <comment />
+    </waypoint>
+    <waypoint>
+      <identifier>PAZTA</identifier>
+      <type>INT</type>
+      <country-code>K6</country-code>
+      <lat>40.841022</lat>
+      <lon>-73.124500</lon>
+      <comment />
+    </waypoint>
+    <waypoint>
+      <identifier>DPK</identifier>
+      <type>VOR</type>
+      <country-code>K6</country-code>
+      <lat>40.791750</lat>
+      <lon>-73.303658</lon>
+      <comment />
+    </waypoint>
+    <waypoint>
+      <identifier>KJFK</identifier>
+      <type>AIRPORT</type>
+      <country-code>K6</country-code>
+      <lat>40.639928</lat>
+      <lon>-73.778692</lon>
+      <comment />
+    </waypoint>
+  </waypoint-table>
+  <route>
+    <route-name>KBOS KJFK</route-name>
+    <flight-plan-index>1</flight-plan-index>
+    <route-point>
+      <waypoint-identifier>KBOS</waypoint-identifier>
+      <waypoint-type>AIRPORT</waypoint-type>
+      <waypoint-country-code>K6</waypoint-country-code>
+    </route-point>
+    <route-point>
+      <waypoint-identifier>BURDY</waypoint-identifier>
+      <waypoint-type>INT</waypoint-type>
+      <waypoint-country-code>K6</waypoint-country-code>
+    </route-point>
+    <route-point>
+      <waypoint-identifier>INNDY</waypoint-identifier>
+      <waypoint-type>INT</waypoint-type>
+      <waypoint-country-code>K6</waypoint-country-code>
+    </route-point>
+    <route-point>
+      <waypoint-identifier>AVONN</waypoint-identifier>
+      <waypoint-type>INT</waypoint-type>
+      <waypoint-country-code>K6</waypoint-country-code>
+    </route-point>
+    <route-point>
+      <waypoint-identifier>MINNK</waypoint-identifier>
+      <waypoint-type>INT</waypoint-type>
+      <waypoint-country-code>K6</waypoint-country-code>
+    </route-point>
+    <route-point>
+      <waypoint-identifier>SEY</waypoint-identifier>
+      <waypoint-type>VOR</waypoint-type>
+      <waypoint-country-code>K6</waypoint-country-code>
+    </route-point>
+    <route-point>
+      <waypoint-identifier>ARCAV</waypoint-identifier>
+      <waypoint-type>INT</waypoint-type>
+      <waypoint-country-code>K6</waypoint-country-code>
+    </route-point>
+    <route-point>
+      <waypoint-identifier>HTO</waypoint-identifier>
+      <waypoint-type>VOR</waypoint-type>
+      <waypoint-country-code>K6</waypoint-country-code>
+    </route-point>
+    <route-point>
+      <waypoint-identifier>CCC</waypoint-identifier>
+      <waypoint-type>VOR</waypoint-type>
+      <waypoint-country-code>K6</waypoint-country-code>
+    </route-point>
+    <route-point>
+      <waypoint-identifier>PAZTA</waypoint-identifier>
+      <waypoint-type>INT</waypoint-type>
+      <waypoint-country-code>K6</waypoint-country-code>
+    </route-point>
+    <route-point>
+      <waypoint-identifier>DPK</waypoint-identifier>
+      <waypoint-type>VOR</waypoint-type>
+      <waypoint-country-code>K6</waypoint-country-code>
+    </route-point>
+    <route-point>
+      <waypoint-identifier>KJFK</waypoint-identifier>
+      <waypoint-type>AIRPORT</waypoint-type>
+      <waypoint-country-code>K6</waypoint-country-code>
+    </route-point>
+  </route>
+</flight-plan>

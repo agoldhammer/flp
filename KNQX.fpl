@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<flight-plan xmlns="http://www8.garmin.com/xmlschemas/FlightPlan/v1">
+  <created>2020-03-03T22:51:31Z</created>
+  <waypoint-table>
+    <waypoint>
+      <identifier>KOPF</identifier>
+      <type>AIRPORT</type>
+      <country-code>K7</country-code>
+      <lat>25.907417</lat>
+      <lon>-80.278222</lon>
+      <comment />
+    </waypoint>
+    <waypoint>
+      <identifier>VKZ</identifier>
+      <type>VOR</type>
+      <country-code>K7</country-code>
+      <lat>25.751903</lat>
+      <lon>-80.154444</lon>
+      <comment />
+    </waypoint>
+    <waypoint>
+      <identifier>DVALL</identifier>
+      <type>INT</type>
+      <country-code>K7</country-code>
+      <lat>25.514686</lat>
+      <lon>-80.998956</lon>
+      <comment />
+    </waypoint>
+    <waypoint>
+      <identifier>CARNU</identifier>
+      <type>INT</type>
+      <country-code>K7</country-code>
+      <lat>25.138369</lat>
+      <lon>-81.325589</lon>
+      <comment />
+    </waypoint>
+    <waypoint>
+      <identifier>TIGAR</identifier>
+      <type>INT</type>
+      <country-code>K7</country-code>
+      <lat>24.946008</lat>
+      <lon>-81.491611</lon>
+      <comment />
+    </waypoint>
+    <waypoint>
+      <identifier>STRAP</identifier>
+      <type>INT</type>
+      <country-code>K7</country-code>
+      <lat>24.831956</lat>
+      <lon>-81.589681</lon>
+      <comment />
+    </waypoint>
+    <waypoint>
+      <identifier>EYW</identifier>
+      <type>VOR</type>
+      <country-code>K7</country-code>
+      <lat>24.585878</lat>
+      <lon>-81.800478</lon>
+      <comment />
+    </waypoint>
+    <waypoint>
+      <identifier>KNQX</identifier>
+      <type>AIRPORT</type>
+      <country-code>K7</country-code>
+      <lat>24.574636</lat>
+      <lon>-81.686644</lon>
+      <comment />
+    </waypoint>
+  </waypoint-table>
+  <route>
+    <route-name>KOPF KNQX</route-name>
+    <flight-plan-index>1</flight-plan-index>
+    <route-point>
+      <waypoint-identifier>KOPF</waypoint-identifier>
+      <waypoint-type>AIRPORT</waypoint-type>
+      <waypoint-country-code>K7</waypoint-country-code>
+    </route-point>
+    <route-point>
+      <waypoint-identifier>VKZ</waypoint-identifier>
+      <waypoint-type>VOR</waypoint-type>
+      <waypoint-country-code>K7</waypoint-country-code>
+    </route-point>
+    <route-point>
+      <waypoint-identifier>DVALL</waypoint-identifier>
+      <waypoint-type>INT</waypoint-type>
+      <waypoint-country-code>K7</waypoint-country-code>
+    </route-point>
+    <route-point>
+      <waypoint-identifier>CARNU</waypoint-identifier>
+      <waypoint-type>INT</waypoint-type>
+      <waypoint-country-code>K7</waypoint-country-code>
+    </route-point>
+    <route-point>
+      <waypoint-identifier>TIGAR</waypoint-identifier>
+      <waypoint-type>INT</waypoint-type>
+      <waypoint-country-code>K7</waypoint-country-code>
+    </route-point>
+    <route-point>
+      <waypoint-identifier>STRAP</waypoint-identifier>
+      <waypoint-type>INT</waypoint-type>
+      <waypoint-country-code>K7</waypoint-country-code>
+    </route-point>
+    <route-point>
+      <waypoint-identifier>EYW</waypoint-identifier>
+      <waypoint-type>VOR</waypoint-type>
+      <waypoint-country-code>K7</waypoint-country-code>
+    </route-point>
+    <route-point>
+      <waypoint-identifier>KNQX</waypoint-identifier>
+      <waypoint-type>AIRPORT</waypoint-type>
+      <waypoint-country-code>K7</waypoint-country-code>
+    </route-point>
+  </route>
+</flight-plan>
