@@ -1,9 +1,9 @@
 from setuptools import setup
 
 setup(
-    name='yourscript',
+    name='flp2fms',
     version='0.1',
-    py_modules=['yourscript'],
+    py_modules=['flp2fms'],
     install_requires=[
         'Click',
     ],

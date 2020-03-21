@@ -1,0 +1,7 @@
+setup.py
+fpl2fms.egg-info/PKG-INFO
+fpl2fms.egg-info/SOURCES.txt
+fpl2fms.egg-info/dependency_links.txt
+fpl2fms.egg-info/entry_points.txt
+fpl2fms.egg-info/requires.txt
+fpl2fms.egg-info/top_level.txt

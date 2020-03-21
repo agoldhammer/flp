@@ -1,0 +1,4 @@
+
+        [console_scripts]
+        flp2fms=flp2fms:cli
+    
