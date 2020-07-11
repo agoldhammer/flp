@@ -24,7 +24,7 @@ def setup(fplplan):
     wpts = root.find("flp:waypoint-table", ns1)
     # route_name = route_name.text.split()
     route_name = route_name.text.replace("/", "-")
-    route_name = "-".join(route_name)
+    # route_name = "-".join(route_name)
     return route_name, rtpts, wpts
 
 
@@ -40,7 +40,7 @@ def wpt2fms(wpt):
         "id": elt_child_text(wpt, "identifier"),
         "lat": elt_child_text(wpt, "lat"),
         "lon": elt_child_text(wpt, "lon"),
-        "elev": elt_child_text(wpt, "elevation"),
+        # "elev": elt_child_text(wpt, "elevation"),
     }
     return wpt_fms
 
@@ -57,7 +57,15 @@ def print_fms_rtpt(rtpt, wpt_lkup, f):
     ident = wpt_fms["id"]
     lat = wpt_fms["lat"]
     lon = wpt_fms["lon"]
-    print(f"{typ} {ident} 0.000000 {lat} {lon}", file=f)
+    # ver 11 files have extra column
+    # 1 KCUB ADEP 4.000000 33.970470 -80.995247
+    # ADEP ADES or DRCT elevation follows in 4th col
+    # print(f"type {typ}", type(typ))
+    if typ == 1:
+        elev = elt_child_text(wpt, "elevation")
+        print(f"{typ} {ident} {elev} {lat} {lon}", file=f)
+    else:
+        print(f"{typ} {ident} 0.000000 {lat} {lon}", file=f)
 
 
 def print_fms(rtpts, wpt_lkup, f=sys.stdout):
