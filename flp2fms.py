@@ -59,7 +59,7 @@ def print_fms_rtpt(rtpt, wpt_lkup, f):
     lon = wpt_fms["lon"]
     # ver 11 files have extra column
     # 1 KCUB ADEP 4.000000 33.970470 -80.995247
-    # ADEP ADES or DRCT elevation follows in 4th col
+    # ADEP ADES or DRCT, elevation follows in 4th col
     # print(f"type {typ}", type(typ))
     if typ == 1:
         elev = elt_child_text(wpt, "elevation")
