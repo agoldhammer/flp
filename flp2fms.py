@@ -25,9 +25,11 @@ def setup(fplplan):
     print(f"Raw route name: {route_name.text}")
     rtpts = route.findall("flp:route-point", ns1)
     wpts = root.find("flp:waypoint-table", ns1)
-    # route_name = route_name.text.split()
-    route_name = route_name.text.replace("/", "-")
-    # route_name = "-".join(route_name)
+    if "/" in route_name:
+        route_name = route_name.text.replace("/", "-")
+    else:
+        route_name = route_name.text.split()
+        route_name = "-".join(route_name)
     return route_name, rtpts, wpts
 
 
@@ -65,7 +67,10 @@ def print_fms_rtpt(rtpt, wpt_lkup, f):
     # ADEP ADES or DRCT, elevation follows in 4th col
     # print(f"type {typ}", type(typ))
     if typ == 1:
-        elev = elt_child_text(wpt, "elevation")
+        try:
+            elev = elt_child_text(wpt, "elevation")
+        except AttributeError:
+            elev = 0.000
         print(f"{typ} {ident} {elev} {lat} {lon}", file=f)
     else:
         print(f"{typ} {ident} 0.000000 {lat} {lon}", file=f)
@@ -84,7 +89,6 @@ def cli():
 
 
 @cli.command()
-@click.option("-n", default=10, help="n")
 @click.argument("fplplan")
 def decode(fplplan):
     print("Input plan name:", fplplan)
