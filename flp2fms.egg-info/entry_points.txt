@@ -1,4 +1,3 @@
+[console_scripts]
+fplan = flp2fms:cli
 
-        [console_scripts]
-        flp2fms=flp2fms:cli
-    

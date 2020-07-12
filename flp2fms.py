@@ -1,6 +1,9 @@
 #! /usr/bin/env python
+import os
 import sys
 import xml.etree.ElementTree as ET
+from pathlib import Path
+
 import click
 
 ns1 = {"flp": "http://www8.garmin.com/xmlschemas/FlightPlan/v1"}
@@ -75,9 +78,15 @@ def print_fms(rtpts, wpt_lkup, f=sys.stdout):
         print_fms_rtpt(rtpt, wpt_lkup, f)
 
 
-@click.command()
+@click.group()
+def cli():
+    pass
+
+
+@cli.command()
+@click.option("-n", default=10, help="n")
 @click.argument("fplplan")
-def cli(fplplan):
+def decode(fplplan):
     print("Input plan name:", fplplan)
     route_name, rtpts, wpts = setup(fplplan)
     print(f"Route name: {route_name}")
@@ -90,5 +99,13 @@ def cli(fplplan):
         print_fms(rtpts, wpt_lookup_table, f)
 
 
-if __name__ == "__main__":
-    cli()  # pylint: disable=no-value-for-parameter
+@cli.command()
+def files():
+    fms_files = [file for file in os.listdir(dwnld_dir) if file.endswith(".fpl")]
+    print(fms_files)
+
+
+
+
+# if __name__ == "__main__":
+#     cli()  # pylint: disable=no-value-for-parameter

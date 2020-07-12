@@ -7,8 +7,5 @@ setup(
     install_requires=[
         'Click',
     ],
-    entry_points='''
-        [console_scripts]
-        flp2fms=flp2fms:cli
-    ''',
+    entry_points={"console_scripts": ["fplan = flp2fms:cli"]}
 )
