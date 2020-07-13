@@ -54,7 +54,17 @@ def make_wptid2wpt_table(wpts):
     return {elt_child_text(wpt, "identifier"): wpt for wpt in wpts}
 
 
-def print_fms_rtpt(rtpt, wpt_lkup, f):
+def rpt2cmpts(rtpt, wpt_lkup):
+    """convert rtpt to its constituent elements
+
+    Args:
+        rtpt (rtpt): route point
+        wpt_lkup (wpt lkup table): waypoint lookup table
+
+    Returns:
+        typ, ident, lat, lon, elev
+
+    """
     wptid = elt_child_text(rtpt, "waypoint-identifier")
     wpt = wpt_lkup[wptid]
     wpt_fms = wpt2fms(wpt)
@@ -66,15 +76,21 @@ def print_fms_rtpt(rtpt, wpt_lkup, f):
     # 1 KCUB ADEP 4.000000 33.970470 -80.995247
     # ADEP ADES or DRCT, elevation follows in 4th col
     # print(f"type {typ}", type(typ))
+    elev = 0.00000
     if typ == 1:
         try:
             elev = elt_child_text(wpt, "elevation")
         except AttributeError:
-            elev = 0.000
-        print(f"{typ} {ident} {elev} {lat} {lon}", file=f)
-    else:
-        print(f"{typ} {ident} 0.000000 {lat} {lon}", file=f)
+            elev = "0.00000"
+    return typ, ident, lat, lon, elev
 
+
+
+def print_fms_rtpt(rtpt, wpt_lkup, f):
+    typ, ident, lat, lon, elev = rpt2cmpts(rtpt, wpt_lkup)
+   
+    print(f"{typ} {ident} {elev} {lat} {lon}", file=f)
+    
 
 def print_fms(rtpts, wpt_lkup, f=sys.stdout):
     print(header_v3, file=f)
@@ -88,16 +104,20 @@ def cli():
     pass
 
 
-@cli.command()
-@click.argument("fplplan")
-def decode(fplplan):
+def output_preamble(fplplan):
     print("Input plan name:", fplplan)
     route_name, rtpts, wpts = setup(fplplan)
     print(f"Route name: {route_name}")
     wpt_lookup_table = make_wptid2wpt_table(wpts)
     fname = f"{fms_dir}/{route_name}.fms"
     print(f"Writing to file {fname}")
+    return fname, rtpts, wpt_lookup_table
 
+
+@cli.command()
+@click.argument("fplplan")
+def decode(fplplan):
+    fname, rtpts, wpt_lookup_table = output_preamble(fplplan)
     print_fms(rtpts, wpt_lookup_table)
     with open(fname, "w") as f:
         print_fms(rtpts, wpt_lookup_table, f)
@@ -107,6 +127,23 @@ def decode(fplplan):
 def files():
     fms_files = [file for file in os.listdir(dwnld_dir) if file.endswith(".fpl")]
     print(fms_files)
+
+
+
+def build_gtn(rtpts, wpt_lkup, f=sys.stdout):
+    output = "FPN/RI"
+    fix = ":F:"
+    for rtpt in rtpts:
+        typ, ident, lat, lon, elev = rpt2cmpts(rtpt, wpt_lkup)
+        output = output + fix + ident
+    return output
+
+@cli.command()
+@click.argument("fplplan")
+def gtn(fplplan):
+    fname, rtpts, wpt_lookup_table = output_preamble(fplplan)
+    output = build_gtn(rtpts, wpt_lookup_table, fname)
+    print(output)
 
 
 
