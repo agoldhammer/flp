@@ -1,4 +1,4 @@
-#! /usr/bin/env python
+import math
 import os
 import sys
 import xml.etree.ElementTree as ET
@@ -14,7 +14,7 @@ header_v3 = "I\n3 version\n1"
 header_v11 = "I\n\1100 Version\nCycle 1710"
 dwnld_dir = "/mnt/c/Users/artgo/Downloads/"
 fms_dir = "/mnt/c/X-Plane 11/Output/FMS plans"
-
+gtn_dir = "/mnt/c/ProgramData/Garmin/Trainers/Databases/FPLN"
 
 def setup(fplplan):
     fname = dwnld_dir + fplplan + ".fpl"
@@ -104,12 +104,17 @@ def cli():
     pass
 
 
-def output_preamble(fplplan):
-    print("Input plan name:", fplplan)
+def output_preamble(fplplan, kind="FMS"):
     route_name, rtpts, wpts = setup(fplplan)
+    if kind == "FMS":
+        fname = f"{fms_dir}/{route_name}.fms"
+    elif kind == "GTN":
+        fname = f"{gtn_dir}/{route_name}.gfp"
+    else:
+        raise NameError("unknown flight plan type")
+    print("Input plan name:", fplplan)
     print(f"Route name: {route_name}")
     wpt_lookup_table = make_wptid2wpt_table(wpts)
-    fname = f"{fms_dir}/{route_name}.fms"
     print(f"Writing to file {fname}")
     return fname, rtpts, wpt_lookup_table
 
@@ -117,7 +122,7 @@ def output_preamble(fplplan):
 @cli.command()
 @click.argument("fplplan")
 def decode(fplplan):
-    fname, rtpts, wpt_lookup_table = output_preamble(fplplan)
+    fname, rtpts, wpt_lookup_table = output_preamble(fplplan, "FMS")
     print_fms(rtpts, wpt_lookup_table)
     with open(fname, "w") as f:
         print_fms(rtpts, wpt_lookup_table, f)
@@ -129,21 +134,45 @@ def files():
     print(fms_files)
 
 
+# desired compressed format: lat is 5 digits, lon 6, 0 padded on left
+# lat/lon encoded as degrees plus tenths of minutes
+# FPN/RI:F:KSBN:F:MUSKY,N42092W086562:F:DEERE,N42119W087362:F:KPWK
+def latlon_reformat(lat, lon):
+    ew = "E" if lon >= 0.0 else "W"
+    ns = "N" if lat >= 0.0 else "S"
+    lat = abs(lat)
+    lon = abs(lon)
+    latint = math.floor(lat)
+    lonint = math.floor(lon)
+    # convert fractional part to deciminutes
+    latfrac = 60.0*(lat - latint)
+    lonfrac = 60.0*(lon - lonint)
+
+    temp = f"{ns}{latint:0>2.0f}{latfrac:0>4.1f}{ew}{lonint:0>3.0f}{lonfrac:0>4.1f}"
+    result = temp.replace(".", "")
+    # print(lat, lon, latint, lonint, latfrac, lonfrac, result)
+    return result
 
 def build_gtn(rtpts, wpt_lkup, f=sys.stdout):
     output = "FPN/RI"
     fix = ":F:"
     for rtpt in rtpts:
         typ, ident, lat, lon, elev = rpt2cmpts(rtpt, wpt_lkup)
-        output = output + fix + ident
+        latlon = latlon_reformat(float(lat), float(lon))
+        if typ == 1:
+            output = output + fix + ident
+        else:
+            output = output + fix + ident + "," + latlon
     return output
 
 @cli.command()
 @click.argument("fplplan")
 def gtn(fplplan):
-    fname, rtpts, wpt_lookup_table = output_preamble(fplplan)
+    fname, rtpts, wpt_lookup_table = output_preamble(fplplan, "GTN")
     output = build_gtn(rtpts, wpt_lookup_table, fname)
     print(output)
+    with open(fname, "w") as f:
+        print(output, file=f)
 
 
 
